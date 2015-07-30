@@ -23,9 +23,13 @@ public class Interface extends JFrame {
     private JButton rename;
     private JButton sfogliaFolder;
     private JTextField folder;
+    private JRadioButton none;
+    private JRadioButton two;
+    private JRadioButton one;
     private JFileChooser fileChooser;
     private JFileChooser imageChooser;
     private JFileChooser folderChooser;
+    private ButtonGroup type;
 
     public Interface(){
 
@@ -36,6 +40,11 @@ public class Interface extends JFrame {
         imageChooser = new JFileChooser();
         folderChooser = new JFileChooser();
         imageChooser.setFileFilter(new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes()));
+
+        type = new ButtonGroup();
+        type.add(none);
+        type.add(one);
+        type.add(two);
 
         sfogliaFile.addActionListener(e -> showFileChooser());
         sfogliaImage.addActionListener(e -> showImageChooser());
@@ -125,8 +134,19 @@ public class Interface extends JFrame {
                     JOptionPane.ERROR_MESSAGE);
         } else {
 
+            String typeSelceted;
+
+            if (none.isSelected()){
+                typeSelceted = "none";
+            } else if (one.isSelected()){
+                typeSelceted = "one";
+            } else {
+                typeSelceted = "two";
+            }
+
             dati.put("file", file.getText());
             dati.put("colonna", colonna.getText());
+            dati.put("type", typeSelceted);
             dati.put("image", image.getText());
             dati.put("folder", folder.getText());
 

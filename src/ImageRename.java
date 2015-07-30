@@ -15,14 +15,16 @@ import java.util.List;
  */
 public class ImageRename {
 
-    protected List<String> newNames;
-    Path source; //original file
-    Path targetDir;
+    private List<String> newNames;
+    private Path source; //original file
+    private Path targetDir;
+    private String type;
 
-    public ImageRename(List<String> codici, String path, String destination){
+    public ImageRename(List<String> codici, String path, String destination, String tipo){
         newNames = codici;
         source = Paths.get(path);
         targetDir = Paths.get(destination);
+        type = tipo;
 
         if (codici != null) {
             rename();
@@ -33,8 +35,13 @@ public class ImageRename {
 
         for (String name : newNames) {
             try {
-
-                name = name.concat("." + getExtension(source.toString()));
+                if (type.equals("none")) {
+                    name = name.concat("." + getExtension(source.toString()));
+                } else if (type.equals("one")){
+                    name = name.concat(".1." + getExtension(source.toString()));
+                } else {
+                    name = name.concat(".2." + getExtension(source.toString()));
+                }
 
                 Path target = targetDir.resolve(name);// create new path ending with `name` content
                 Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);

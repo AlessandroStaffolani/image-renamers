@@ -20,7 +20,7 @@ public class ExcelReader {
         dati = data;
         List<String> codici = readFile();
         if (codici.size() != 0){
-            ImageRename rename = new ImageRename(codici, dati.get("image"), dati.get("folder"));
+            ImageRename rename = new ImageRename(codici, dati.get("image"), dati.get("folder"), dati.get("type"));
         } else {
             JOptionPane.showMessageDialog(null, "La colonna richiesta è vuota! Inseriscine un'altra!", "ATTENZIONE",
                     JOptionPane.WARNING_MESSAGE);
