@@ -1,2 +1,2 @@
 # image-renamers
-Small java application that allow to copy e and rename the same image with different names getted by an excel sheet 
+Small java application that allows to copy and rename the same image using different names taken from an excel sheet
